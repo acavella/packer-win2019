@@ -1,12 +1,12 @@
 {
     "variables": {
-      "boot_wait": "5s",
+      "boot_wait": "2s",
       "disk_size": "40960",
       "iso_checksum": "3022424f777b66a698047ba1c37812026b9714c5",
       "iso_url": "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso",
       "memsize": "2048",
       "numvcpus": "2",
-      "vm_name": "Win2019_17763-Core",
+      "vm_name": "Win2019_17763",
       "winrm_password" : "packer",
       "winrm_username" : "Administrator"
     },
@@ -15,6 +15,7 @@
           "type": "vmware-iso",
           "guest_os_type": "windows9srv-64",
           "vm_name":"{{user `vm_name`}}",
+          "boot_command": ["<spacebar><spacebar>"],
           "boot_wait": "{{user `boot_wait`}}",
           "disk_size": "{{user `disk_size`}}",
           "disk_type_id": "0",
@@ -27,7 +28,7 @@
           "winrm_use_ssl": true,
           "winrm_insecure": true,
           "winrm_timeout": "4h",
-          "floppy_files": ["scripts/bios/core/autounattend.xml"],
+          "floppy_files": ["scripts/uefi/gui/autounattend.xml"],
           "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
           "shutdown_timeout": "30m",
           "skip_compaction": false,
@@ -35,6 +36,7 @@
             "memsize": "{{user `memsize`}}",
             "numvcpus": "{{user `numvcpus`}}",
             "virtualHW.version": "14",
+            "firmware": "efi",
             "scsi0.virtualDev": "lsisas1068"
           }
         },
@@ -42,6 +44,7 @@
             "type": "virtualbox-iso",
             "guest_os_type": "Windows2016_64",
             "vm_name": "{{user `vm_name`}}",
+          "boot_command": ["<spacebar>"],
             "iso_url": "{{user `iso_url`}}",
             "iso_checksum": "{{user `iso_checksum`}}",
             "guest_additions_mode": "disable",
@@ -54,12 +57,14 @@
             "winrm_use_ssl": true,
             "winrm_insecure": true,
             "winrm_timeout": "4h",
-            "floppy_files": ["scripts/bios/core/autounattend.xml"],
             "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
             "shutdown_timeout": "30m",
+            "iso_interface": "sata",
             "vboxmanage": [
               ["modifyvm", "{{.Name}}", "--memory", "{{user `memsize`}}"],
-              ["modifyvm", "{{.Name}}", "--cpus", "{{user `numvcpus`}}"]
+              ["modifyvm", "{{.Name}}", "--cpus", "{{user `numvcpus`}}"],
+              ["modifyvm", "{{.Name}}", "--firmware", "EFI"],
+              ["storageattach", "{{.Name}}", "--storagectl", "SATA Controller", "--type", "dvddrive", "--port", "3", "--medium", "./scripts/uefi/gui/autounattend.iso"]
             ]
         }
     ],

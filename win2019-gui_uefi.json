@@ -1,6 +1,6 @@
 {
     "variables": {
-      "boot_wait": "5s",
+      "boot_wait": "2s",
       "disk_size": "40960",
       "iso_checksum": "3022424f777b66a698047ba1c37812026b9714c5",
       "iso_url": "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso",
@@ -15,7 +15,7 @@
           "type": "vmware-iso",
           "guest_os_type": "windows9srv-64",
           "vm_name":"{{user `vm_name`}}",
-          "boot_command": ["<spacebar>"],
+          "boot_command": ["<spacebar><spacebar>"],
           "boot_wait": "{{user `boot_wait`}}",
           "disk_size": "{{user `disk_size`}}",
           "disk_type_id": "0",
