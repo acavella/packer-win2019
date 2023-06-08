@@ -39,33 +39,6 @@
             "firmware": "efi",
             "scsi0.virtualDev": "lsisas1068"
           }
-        },
-        {
-            "type": "virtualbox-iso",
-            "guest_os_type": "Windows2016_64",
-            "vm_name": "{{user `vm_name`}}",
-          "boot_command": ["<spacebar>"],
-            "iso_url": "{{user `iso_url`}}",
-            "iso_checksum": "{{user `iso_checksum`}}",
-            "guest_additions_mode": "disable",
-            "headless": false,
-            "boot_wait": "{{user `boot_wait`}}",
-            "disk_size": "{{user `disk_size`}}",
-            "communicator":"winrm",
-            "winrm_username": "{{user `winrm_username`}}",
-            "winrm_password": "{{user `winrm_password`}}",
-            "winrm_use_ssl": true,
-            "winrm_insecure": true,
-            "winrm_timeout": "4h",
-            "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
-            "shutdown_timeout": "30m",
-            "iso_interface": "sata",
-            "vboxmanage": [
-              ["modifyvm", "{{.Name}}", "--memory", "{{user `memsize`}}"],
-              ["modifyvm", "{{.Name}}", "--cpus", "{{user `numvcpus`}}"],
-              ["modifyvm", "{{.Name}}", "--firmware", "EFI"],
-              ["storageattach", "{{.Name}}", "--storagectl", "SATA Controller", "--type", "dvddrive", "--port", "3", "--medium", "./scripts/uefi/gui/autounattend.iso"]
-            ]
         }
     ],
     "provisioners": [
