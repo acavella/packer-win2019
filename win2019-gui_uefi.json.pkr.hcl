@@ -106,12 +106,6 @@ build {
   }
 
   provisioner "powershell" {
-    only         = ["virtualbox-iso"]
-    pause_before = "1m0s"
-    scripts      = ["scripts/virtualbox-guest-additions.ps1"]
-  }
-
-  provisioner "powershell" {
     scripts = ["scripts/setup.ps1"]
   }
 
