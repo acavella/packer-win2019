@@ -50,12 +50,6 @@
       },
       {
         "type": "powershell",
-        "only": ["virtualbox-iso"],
-        "scripts": ["scripts/virtualbox-guest-additions.ps1"],
-        "pause_before": "1m"
-      },
-      {
-        "type": "powershell",
         "scripts": ["scripts/setup.ps1"]
       },
       {
