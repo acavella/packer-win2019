@@ -47,7 +47,7 @@ variable "numvcpus" {
 
 variable "vm_name" {
   type    = string
-  default = "Win2019_17763"
+  default = "Win2022_"
 }
 
 variable "winrm_password" {

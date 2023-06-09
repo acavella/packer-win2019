@@ -1,0 +1,20 @@
+# General settings
+vm_name         = "Win2019_May2023"
+iso_checksum    = ""
+iso_url         = ""
+
+# Default credentials
+winrm_password  = "packer"
+winrm_username  = "Administrator"
+
+# Hardware configuration
+numvcpus    = "2"
+memsize     = "4096"
+
+# ESXi configuration
+esxi_host                   = ""
+esxi_username               = ""
+esxi_password               = ""
+esxi_insecure_connection    = "true"
+esxi_datastore              = ""
+esxi_network                = ""
