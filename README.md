@@ -21,7 +21,7 @@ To create a Windows Server 2019 VM image using VMware Workstation use the follow
 
 ```sh
 cd c:\packer-Win2019
-packer build -only=vmware-iso win2019-gui_uefi.json #Windows Server 2019 Core using UEFI
+packer build -only=vmware-iso win2019-gui_uefi.json #Windows Server 2019 Desktop Experience using UEFI
 ```
 
 *If you omit the keyword "-only=" images for both Workstation and vSphere will attmpt to be created.*
