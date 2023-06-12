@@ -1,7 +1,7 @@
 # Cache objects
 packer_cache/
-output-virtualbox-iso/
 output-vmware-iso/
+output-vsphere-iso/
 
 # Site-specific configuration and credentials
 config.auto.pkrvars.hcl
