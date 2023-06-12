@@ -1,7 +1,7 @@
 # General settings
-vm_name         = "Win2019_May2023"
-iso_checksum    = ""
-iso_url         = ""
+vm_name         = "Win2019_17763"
+iso_checksum    = "3022424f777b66a698047ba1c37812026b9714c5"
+iso_url         = "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
 
 # Default credentials
 winrm_password  = "packer"
@@ -10,11 +10,12 @@ winrm_username  = "Administrator"
 # Hardware configuration
 numvcpus    = "2"
 memsize     = "4096"
+disk_size   = "120000"
 
 # ESXi configuration
 esxi_host                   = ""
-esxi_username               = ""
+esxi_username               = "root"
 esxi_password               = ""
 esxi_insecure_connection    = "true"
-esxi_datastore              = ""
-esxi_network                = ""
+esxi_datastore              = "datastore1"
+esxi_network                = "VM Network"
